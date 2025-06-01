@@ -29,37 +29,44 @@ const Yoshi = {
   força: 5,
 };
 
-const dado = Math.floor(Math.random() * 6) + 1;
-console.log(dado);
-iniciar(Yoshi, mario)
-function iniciar( personagem1, personagem2){
+function pistasAleatorias() {
+  const pistas = ["reta", "curva", "confronto"];
+  const pista = pistas[Math.floor(Math.random() * pistas.length)];
+  return pista;
+}
+function rolarDado() {
+  const dado = Math.floor(Math.random() * 6) + 1;
+  return dado
+}
+function iniciar(personagem1, personagem2) {
   for (let i = 0; i < 10; i++) {
-    const palavras = ["reta"];
-    const indiceAleatorio = Math.floor(Math.random() * palavras.length);
-    const palavraEscolhida = palavras[indiceAleatorio];
+    palavraEscolhida = pistasaleatorias();
     console.log("pista sorteada:", palavraEscolhida);
-    if (palavraEscolhida === "reta") {
-      const dado1 = Math.floor(Math.random() * 6) + 1;
-      console.log("O jogador-1 girou o dado e tirou:", dado1);
-      const resultadoJ1 = personagem1.velocidade + dado1;
+    if (palavraEscolhida == "reta") {
+      const dadopersonagem1 = rolarDado();
+      console.log("O jogador-1 girou o dado e tirou:", dadopersonagem1);
+      const resultadoJ1 = personagem1.velocidade + dadopersonagem1;
       console.log(
         "o " + personagem1.nome + " ficou com:" + resultadoJ1 + " de velocidade"
       );
-      const dado2 = Math.floor(Math.random() * 6 + 1);
-      console.log("jogador-2 girou o dado e tirou:", dado2);
-      const resultadoJ2 = personagem2.velocidade + dado2;
+      const dadopersonagem2 = rolarDado();
+      console.log("jogador-2 girou o dado e tirou:", dadopersonagem2);
+      const resultadoJ2 = personagem2.velocidade + dadopersonagem2;
       console.log(
-        "o " + personagem2.nome + " ficou com:" + resultadoJ2 + " de velocidade "
+        "o " +
+          personagem2.nome +
+          " ficou com:" +
+          resultadoJ2 +
+          " de velocidade "
       );
-      if (resultadoJ1>resultadoJ2){
-        console.log(personagem1.nome," foi o vencedor"); 
-      }else if (resultadoJ1<resultadoJ2) {
+      if (resultadoJ1 > resultadoJ2) {
+        console.log(personagem1.nome, " foi o vencedor");
+      } else if (resultadoJ1 < resultadoJ2) {
         console.log(personagem2.nome, " foi o vencedor");
-      }else{
+      } else {
         console.log("Empate");
-        
       }
     }
   }
-  
 }
+iniciar(Yoshi, mario);
